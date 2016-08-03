@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>TestAngular</title>
+    <script type="text/javascript" src="node_modules\angular\angular.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+  </head>
+  <body ng-app="myapp" ng-init="cost=25.65;qty=30;">
+    <div ng-controller="StudentController">
+      <input type="text" ng-model="student.firstName" />
+      <input type="text" ng-model="student.lastName" />
+      <select ng-model="student.country">
+        <option ng-repeat="country in student.countries" value="{{country.name}}">{{country.locale}}</option>
+      </select>
+      <h2>Welcome "{{student.fullName()}}" to the world of <span ng-bind="student.country"></span>!</h2>
+      <p>Your cost is {{cost}}</p>
+      <p>Your quantity is {{qty}}</p>
+      <p>Your total is {{cost * qty}}</p>
+
+      <h2>Search countries</h2>
+      <input type="text" ng-model="ctryName" />
+      <ul>
+        <li ng-repeat="country in student.countries | filter: ctryName">{{country.name}}</li>
+      </ul>
+
+      <div ng-include="'table.html'"></div>
+
+      <h2>Dom acts</h2>
+      <input type="checkbox" ng-model="enableDisableButton">Disable Button
+      <button ng-disabled="enableDisableButton">Click Me!</button>
+
+      <p>Counter: {{student.clickCounter}}</p>
+      <button ng-click="student.countClick()">Click Me!</button>
+
+      <h2>List ajax data</h2>
+      <table>
+        <tr>
+          <th>Name</th>
+          <th>Roll No.</th>
+          <th>Percentage</th>
+        </tr>
+        <tr ng-repeat="stud in students">
+          <td>{{stud.Name}}</td>
+          <td>{{stud.RollNo}}</td>
+          <td>{{stud.Percentage}}</td>
+        </tr>
+      </table>
+
+			<h2>Service Factory form</h2>
+			<input type="text" name="name" ng-model="student.value1" />
+			<input type="text" name="name" ng-model="student.value2" />
+			<button type="button" ng-click="student.calculate()">Calculate</button>
+			<p>Total is (value1<sup>2</sup> * value2): {{student.result}}</p>
+    </div>
+  </body>
+</html>

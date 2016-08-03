@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title>Student Form</title>
+    <link rel="stylesheet" href="css/style.css" media="screen" />
+    <script type="text/javascript" src="node_modules\angular\angular.js"></script>
+    <script type="text/javascript" src="js/student.js"></script>
+  </head>
+  <body ng-app="studentApp" ng-controller="StudentFormController">
+    <div class="container">
+      <form method="post" name="studentForm.stdFrm" novalidate>
+        <div class="form-head">
+          <h1>Student Details</h1>
+          <p class="error" ng-show="studentForm.showError" ng-click="studentForm.hideMessage()">Fill in the required fields.</p>
+          <p class="success" ng-show="studentForm.showSuccess" ng-click="studentForm.hideMessage()">Form submitted successfully.</p>
+        </div>
+        <div class="form-row">
+          <input type="text" name="name" ng-model="studentForm.name" placeholder="Name*" required />
+          <span class="has-error" ng-show=" studentForm.stdFrm.name.$dirty &&  studentForm.stdFrm.name.$invalid">
+            <span ng-show=" studentForm.stdFrm.name.$error.required">* Name is required field</span>
+          </span>
+        </div>
+        <div class="form-row">
+          <input type="email" name="email" ng-model="studentForm.email" placeholder="Email*" required />
+          <span class="has-error" ng-show=" studentForm.stdFrm.email.$dirty &&  studentForm.stdFrm.email.$invalid">
+            <span ng-show=" studentForm.stdFrm.email.$error.required">* Required Field</span>
+            <span ng-show=" studentForm.stdFrm.email.$error.email">Enter proper email</span>
+          </span>
+        </div>
+        <div class="form-row">
+          <input type="text" name="fatherName" ng-model="studentForm.fatherName" placeholder="Father's name*" required />
+          <span class="has-error" ng-show=" studentForm.stdFrm.fatherName.$dirty &&  studentForm.stdFrm.fatherName.$invalid">
+            <span ng-show=" studentForm.stdFrm.fatherName.$error.required">* Required Field</span>
+          </span>
+        </div>
+        <div class="form-row">
+          <input type="text" name="motherName" ng-model="studentForm.motherName" placeholder="Mother's name*" required />
+          <span class="has-error" ng-show=" studentForm.stdFrm.motherName.$dirty &&  studentForm.stdFrm.motherName.$invalid">
+            <span ng-show=" studentForm.stdFrm.motherName.$error.required">* Required Field</span>
+          </span>
+        </div>
+        <div class="form-row">
+          <input type="date" name="dob" ng-model="studentForm.dob" placeholder="Dob (yyyy-MM-dd)*" required />
+          <span class="has-error" ng-show=" studentForm.stdFrm.dob.$dirty &&  studentForm.stdFrm.dob.$invalid">
+            <span ng-show=" studentForm.stdFrm.dob.$error.required">* Required Field</span>
+            <span ng-show=" studentForm.stdFrm.dob.$error.date">Enter proper date</span>
+          </span>
+        </div>
+        <div class="form-row">
+          <input type="text" name="fatherMobile" ng-model="studentForm.fatherMobile" placeholder="Father's mobile*" required />
+          <span class="has-error" ng-show=" studentForm.stdFrm.fatherMobile.$dirty &&  studentForm.stdFrm.fatherMobile.$invalid">
+            <span ng-show=" studentForm.stdFrm.fatherMobile.$error.required">* Required Field</span>
+          </span>
+        </div>
+        <div class="form-row">
+          <input type="text" name="motherMobile" ng-model="studentForm.motherMobile" placeholder="Mother's mobile" />
+        </div>
+        <div class="form-row">
+          <input type="text" name="fatherOccupation" ng-model="studentForm.fatherOccupation" placeholder="Father's occupation" />
+        </div>
+        <div class="form-row">
+          <input type="text" name="motherOccupation" ng-model="studentForm.motherOccupation" placeholder="Mother's Occupation" />
+        </div>
+        <div class="form-row">
+          <textarea name="address" ng-model="studentForm.address" rows="3" cols="250" placeholder="Address*" required></textarea>
+          <span ng-show=" studentForm.stdFrm.address.$dirty &&  studentForm.stdFrm.address.$invalid">
+            <span class="has-error" ng-show=" studentForm.stdFrm.address.$error.required">* Required Field</span>
+          </span>
+        </div>
+        <div class="form-foot">
+          <button type="button" ng-click="studentForm.submitDetails()">Submit</button>
+          <button type="reset" ng-click="studentForm.resetForm()">Reset</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="std-list">
+      <h1>Student List</h1>
+      <table>
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>Father's Name</td>
+            <td>Mother's Name</td>
+            <td>Father's mobile</td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="stud in studentForm.studentList">
+            <td>{{stud.name}}</td>
+            <td>{{stud.email}}</td>
+            <td>{{stud.fatherName}}</td>
+            <td>{{stud.motherName}}</td>
+            <td>{{stud.fatherMobile}}</td>
+          </tr>
+          <tr ng-show="studentForm.showRowMessage()">
+            <td colspan="5" class="norcd">No record found</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

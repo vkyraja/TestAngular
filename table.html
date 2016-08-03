@@ -1,0 +1,15 @@
+<h2>Table countries</h2>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Locale</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="country in student.countries | filter: ctryName">
+      <td>{{country.name}}</td>
+      <td>{{country.locale}}</td>
+    </tr>
+  </tbody>
+</table>
